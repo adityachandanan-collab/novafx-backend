@@ -114,3 +114,4 @@ async function login(email, password) {
 - **Hardening for production**: add refresh tokens or a session table (for
   real "logout all devices"), 2FA, KYC document storage, structured logging,
   automated backups, and monitoring/alerting.
+
