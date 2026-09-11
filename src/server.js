@@ -8,14 +8,19 @@ const accountRoutes = require('./routes/account');
 const orderRoutes = require('./routes/orders');
 const positionRoutes = require('./routes/positions');
 const transactionRoutes = require('./routes/transactions');
+const adminRoutes = require('./routes/admin');
 
 const app = express();
 
 app.use(helmet());
 app.use(express.json({ limit: '100kb' }));
+
 app.use(
   cors({
-    origin: (process.env.CORS_ORIGIN || '').split(',').map((s) => s.trim()).filter(Boolean),
+    origin: (process.env.CORS_ORIGIN || '')
+      .split(',')
+      .map((s) => s.trim())
+      .filter(Boolean),
   })
 );
 
@@ -27,6 +32,7 @@ app.use('/api/account', accountRoutes);
 app.use('/api/orders', orderRoutes);
 app.use('/api/positions', positionRoutes);
 app.use('/api/transactions', transactionRoutes);
+app.use('/api/admin', adminRoutes);
 
 // Fallback error handler — never leak stack traces to the client.
 app.use((err, req, res, next) => {
@@ -35,4 +41,7 @@ app.use((err, req, res, next) => {
 });
 
 const port = process.env.PORT || 4000;
-app.listen(port, () => console.log(`NovaFX backend listening on port ${port}`));
+
+app.listen(port, () => {
+  console.log(`NovaFX backend listening on port ${port}`);
+});
