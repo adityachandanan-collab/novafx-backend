@@ -9,6 +9,7 @@ const orderRoutes = require('./routes/orders');
 const positionRoutes = require('./routes/positions');
 const transactionRoutes = require('./routes/transactions');
 const adminRoutes = require('./routes/admin');
+const depositRoutes = require('./routes/deposits');
 
 const app = express();
 
@@ -33,6 +34,7 @@ app.use('/api/orders', orderRoutes);
 app.use('/api/positions', positionRoutes);
 app.use('/api/transactions', transactionRoutes);
 app.use('/api/admin', adminRoutes);
+app.use('/api/deposits', depositRoutes);
 
 // Fallback error handler — never leak stack traces to the client.
 app.use((err, req, res, next) => {
